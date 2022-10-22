@@ -1,51 +1,68 @@
 import React from 'react'
 import Aufgabe from './Aufgabe'
 
-var alletodos = [ {inhalt: "einkaufen", erledigt: true},
-                  {inhalt: "einkaufen", erledigt: true} ];
-const TodoListe = () => {
-    const [todos, setTodos] =useState(alletodos); //hier wird ein anfangs state gesetzt und die funktion (setTodos) defineirt mit der später das State des <todos geändert werden kann
- const AufgabeAendern = (index) => {
-    const neueAufgabe = [...todos]; 
-    if (neueAufgabe[index].erledigt){
-        neueAufgabe[index].erledigt =false;
-    }else {
-        neueAufgabe[index].erledigt =true;
+// var alletodos = [ {inhalt: "einkaufen", erledigt: true},
+//                   {inhalt: "einkaufen", erledigt: true} ];
+// const TodoListe = () => {
+//     const [todos, setTodos] =useState(alletodos); //hier wird ein anfangs state gesetzt und die funktion (setTodos) defineirt mit der später das State des <todos geändert werden kann
+//  const AufgabeAendern = (index) => {
+//     const neueAufgabe = [...todos]; 
+//     if (neueAufgabe[index].erledigt){
+//         neueAufgabe[index].erledigt =false;
+//     }else {
+//         neueAufgabe[index].erledigt =true;
 
-  }
-  setTodos(neueAufgabe);};
+//   }
+//   setTodos(neueAufgabe);};
   
-    return (
-    <div class="container-fluid bg-light m-2 ">
-     <div class="row justify-content-start">
-    <div class="col-xl-3">
+//     return (
+//     <div class="container-fluid bg-light m-2 ">
+//      <div class="row justify-content-start">
+//     <div class="col-xl-3">
       
-    </div>
+//     </div>
   
-    <div class="col-xl-6">
-    <h1 class="p-3 mb-2 bg-dark text-white fw-bold text-center shadow-sm"> Aufgaben </h1>
+//     <div class="col-xl-6">
+//     <h1 class="p-3 mb-2 bg-dark text-white fw-bold text-center shadow-sm"> Aufgaben </h1>
     
-    {todos.map((item,index) => {
+//     {todos.map((item,index) => {
 
-        return(
-            <Aufgabe
-                inhalt={item.inhalt}
-                erledigt={item.erledigt}
-                key={index}
-                index={index}
-                aendereAufgabe ={AufgabeAendern}
-            >
-            </Aufgabe>
-        );
-       })
-    };
-    </div>
-    <div class="col-xl-3">
+//         return(
+//             <Aufgabe
+//                 inhalt={item.inhalt}
+//                 erledigt={item.erledigt}
+//                 key={index}
+//                 index={index}
+//                 aendereAufgabe ={AufgabeAendern}
+//             >
+//             </Aufgabe>
+//         );
+//        })
+//     };
+//     </div>
+//     <div class="col-xl-3">
      
-    </div>
-   </div>   
-    </div>
-  );
+//     </div>
+//    </div>   
+//     </div>
+//   );
+// }
+function TodoListe({ todos, toggleComplete, removeTodo, editTodo }) {
+    return (
+        
+        <ul>
+            {todos.map(todo => (
+               <Aufgabe 
+               key={todo.id} 
+               todo={todo} 
+               toggleComplete={toggleComplete}
+               removeTodo= {removeTodo}
+               editTodo={editTodo}
+               /> 
+            ))}
+        </ul>
+
+    );
 }
 
 export default TodoListe
